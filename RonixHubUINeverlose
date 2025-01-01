@@ -972,75 +972,80 @@ function NEVERLOSE:AddWindow(NameScriptHub,Text,UICustomSize)
 			end
 
 			function sectionfunc:AddLabel(LabelNameString)
-				local Label = Instance.new("Frame")
-				local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
-				local UICorner = Instance.new("UICorner")
-				local LabelText = Instance.new("TextLabel")
+    local Label = Instance.new("Frame")
+    local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
+    local UICorner = Instance.new("UICorner")
+    local LabelText = Instance.new("TextLabel")
 
-				Label.Name = "Label"
-				Label.Parent = Section
-				Label.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-				Label.BackgroundTransparency = 1.000
-				Label.BorderColor3 = Color3.fromRGB(0, 0, 0)
-				Label.BorderSizePixel = 0
-				Label.Size = UDim2.new(0.899999976, 0, 0.5, 0)
-				Label.ZIndex = 5
+    Label.Name = "Label"
+    Label.Parent = Section
+    Label.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    Label.BackgroundTransparency = 1.000
+    Label.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Label.BorderSizePixel = 0
+    Label.Size = UDim2.new(0.899999976, 0, 0.5, 0)
+    Label.ZIndex = 5
 
-				UIAspectRatioConstraint.Parent = Label
-				UIAspectRatioConstraint.AspectRatio = 6.000
-				UIAspectRatioConstraint.AspectType = Enum.AspectType.ScaleWithParentSize
+    UIAspectRatioConstraint.Parent = Label
+    UIAspectRatioConstraint.AspectRatio = 6.000
+    UIAspectRatioConstraint.AspectType = Enum.AspectType.ScaleWithParentSize
 
-				UICorner.CornerRadius = UDim.new(0, 3)
-				UICorner.Parent = Label
+    UICorner.CornerRadius = UDim.new(0, 3)
+    UICorner.Parent = Label
 
-				LabelText.Name = "LabelText"
-				LabelText.Parent = Label
-				LabelText.AnchorPoint = Vector2.new(0.5, 0.5)
-				LabelText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-				LabelText.BackgroundTransparency = 1.000
-				LabelText.BorderColor3 = Color3.fromRGB(0, 0, 0)
-				LabelText.BorderSizePixel = 0
-				LabelText.Position = UDim2.new(0.5, 0, 0.5, 0)
-				LabelText.Size = UDim2.new(1, 0, 0.649999976, 0)
-				LabelText.ZIndex = 6
-				LabelText.Font = Enum.Font.SourceSansSemibold
-				LabelText.Text = LabelNameString or"Label"
-				LabelText.TextColor3 = Color3.fromRGB(255, 255, 255)
-				LabelText.TextScaled = true
-				LabelText.TextSize = 14.000
-				LabelText.TextTransparency = 0.300
-				LabelText.TextWrapped = true
-				LabelText.TextXAlignment = Enum.TextXAlignment.Left
-				update_section_size(
+    LabelText.Name = "LabelText"
+    LabelText.Parent = Label
+    LabelText.AnchorPoint = Vector2.new(0.5, 0.5)
+    LabelText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    LabelText.BackgroundTransparency = 1.000
+    LabelText.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    LabelText.BorderSizePixel = 0
+    LabelText.Position = UDim2.new(0.5, 0, 0.5, 0)
+    LabelText.Size = UDim2.new(1, 0, 0.649999976, 0)
+    LabelText.ZIndex = 6
+    LabelText.Font = Enum.Font.SourceSansSemibold
+    LabelText.Text = LabelNameString or "Label"
+    LabelText.TextColor3 = Color3.fromRGB(255, 255, 255)
+    LabelText.TextScaled = true
+    LabelText.TextSize = 14.000
+    LabelText.TextTransparency = 0.300
+    LabelText.TextWrapped = true
+    LabelText.TextXAlignment = Enum.TextXAlignment.Left
 
-				)
+    update_section_size()
 
-				LabelText:GetPropertyChangedSignal('TextTransparency'):Connect(function()
-					if LabelText.TextTransparency <= 0.99 then
-						Label.Visible=true
-					else
-						Label.Visible=false
-					end
-				end)
+    LabelText:GetPropertyChangedSignal("TextTransparency"):Connect(function()
+        if LabelText.TextTransparency <= 0.99 then
+            Label.Visible = true
+        else
+            Label.Visible = false
+        end
+    end)
 
-				local button_func = {}
-				function button_func:Text(a)
-					LabelText.Text=tostring(a)
-				end
+    local button_func = {}
+    function button_func:Text(a)
+        LabelText.Text = tostring(a)
+    end
 
-				function button_func:Status(val)
-					if val then
-						TweenService:Create(Label,TweenInfo.new(1,Enum.EasingStyle.Quint),{Size = UDim2.new(0.899999976, 0, 0.5, 0)}):Play()
-						TweenService:Create(UIAspectRatioConstraint,TweenInfo.new(.1,Enum.EasingStyle.Quint),{AspectRatio = 6}):Play()
-						TweenService:Create(LabelText,TweenInfo.new(0.7,Enum.EasingStyle.Quint),{TextTransparency = 0.3}):Play()
-					else
-						TweenService:Create(Label,TweenInfo.new(.8,Enum.EasingStyle.Quint),{Size = UDim2.new(0,0,0,0)}):Play()
-						TweenService:Create(LabelText,TweenInfo.new(1,Enum.EasingStyle.Quint),{TextTransparency = 1}):Play()
-					end
-				end
+    function button_func:Status(val)
+        if val then
+            TweenService:Create(Label, TweenInfo.new(1, Enum.EasingStyle.Quint), { Size = UDim2.new(0.899999976, 0, 0.5, 0) }):Play()
+            TweenService:Create(UIAspectRatioConstraint, TweenInfo.new(0.1, Enum.EasingStyle.Quint), { AspectRatio = 6 }):Play()
+            TweenService:Create(LabelText, TweenInfo.new(0.7, Enum.EasingStyle.Quint), { TextTransparency = 0.3 }):Play()
+        else
+            TweenService:Create(Label, TweenInfo.new(0.8, Enum.EasingStyle.Quint), { Size = UDim2.new(0, 0, 0, 0) }):Play()
+            TweenService:Create(LabelText, TweenInfo.new(1, Enum.EasingStyle.Quint), { TextTransparency = 1 }):Play()
+        end
+    end
 
-				return button_func
-			end
+    function button_func:Refresh(newText)
+        if LabelText.Text ~= newText then
+            LabelText.Text = newText
+        end
+    end
+
+    return button_func
+end
 
 			function sectionfunc:AddToggle(ToggleName,Default,callback)
 				callback=callback or function()
